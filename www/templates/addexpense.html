@@ -1,0 +1,36 @@
+<ion-view view-title="New Expense">
+    <ion-content>
+        <div class="list">
+            <label class="item item-input item-stacked-label">
+                <span class="input-label">Vender</span>
+                <input type="text" placeholder="Target">
+            </label>
+            <label class="item item-input item-stacked-label">
+                <span class="input-label">Description</span>
+                <input type="text" placeholder="Toilet paper">
+            </label>
+            <label class="item item-input item-stacked-label">
+                <span class="input-label">Amount $</span>
+                <input type="text" placeholder="15.00">
+            </label>
+            <label class="item item-input item-stacked-label">
+                <span class="input-label">Split Count</span>
+                <input type="text" placeholder="3">
+            </label>
+            <a class="item item-icon-right" ng-click="showUserList('single')">
+                Paid By
+                <span class="item-note">
+                    {{users.selected.paidBy.name}}
+                </span>
+                <i class="icon ion-chevron-right"></i>
+            </a>
+            <a class="item item-icon-right" ng-click="showUserList('multi')">
+                Charge User
+                <span class="item-note">
+                    <span ng-repeat="user in users.selected.charge">{{user.name}}</span>
+                </span>
+                <i class="icon ion-chevron-right"></i>
+            </a>
+        </div>
+    </ion-content>
+</ion-view>

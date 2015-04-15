@@ -1,4 +1,4 @@
-angular.module('starter.controllers', [])
+angular.module('app.controllers', [])
 
     .controller('AppCtrl', function ($scope, $ionicModal, $timeout) {
         // Form data for the login modal
@@ -44,5 +44,56 @@ angular.module('starter.controllers', [])
         ];
     })
 
+    .controller('ExpenseCtrl', function ($scope, $ionicModal) {
+        $scope.users = {
+            list: [
+                {name: "Cap-Dog"},
+                {name: "Shay"},
+                {name: "Beck"},
+                {name: "Scott"},
+                {name: "Gman"},
+                {name: "DEMIN"}
+            ],
+            selected: {
+                paidBy: {},
+                charge: []
+            }
+        };
+
+        var userSelectedMany = function(newUser, type) {
+            var idx = _.indexOf($scope.users.selected.charge, newUser);
+            if (idx > -1) {
+                $scope.users.selected.charge.splice(idx, 1);
+            } else {
+                $scope.users.selected.charge.push(newUser);
+            }
+        };
+
+        var userSelectedSingle = function(newUser) {
+            $scope.users.selected.paidBy = newUser;
+        };
+
+        $scope.selectFunc = userSelectedMany;
+
+        $ionicModal.fromTemplateUrl('templates/userlist.html', {
+            scope: $scope
+        }).then(function (modal) {
+            $scope.modal = modal;
+        });
+
+
+        $scope.closeUserList = function () {
+            $scope.modal.hide();
+        };
+
+        $scope.showUserList = function (type) {
+            if (type === 'single') {
+                $scope.selectFunc = userSelectedSingle;
+            } else if (type === 'multi') {
+                $scope.selectFunc = userSelectedMany;
+            }
+            $scope.modal.show();
+        };
+    })
     .controller('PlaylistCtrl', function ($scope, $stateParams) {
     });

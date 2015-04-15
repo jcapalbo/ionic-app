@@ -1,0 +1,17 @@
+<ion-modal-view>
+    <ion-header-bar>
+        <h1 class="title">Users</h1>
+
+        <div class="buttons">
+            <button class="button button-clear" ng-click="closeUserList()">Close</button>
+        </div>
+    </ion-header-bar>
+    <ion-content>
+        <div class="list">
+            <a class="item item-icon-right" ng-repeat="user in users.list" ng-click="selectFunc(user);">
+                {{user.name}}
+                <i class="icon ion-checkmark" ng-show="user.selected"></i>
+            </a>
+        </div>
+    </ion-content>
+</ion-modal-view>
